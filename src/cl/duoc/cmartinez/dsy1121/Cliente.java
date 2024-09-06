@@ -13,6 +13,7 @@ public class Cliente {
 
     public void agregarProducto(Producto producto) {
         carrito.agregarProducto(producto.getNombre(), producto.getPrecio());
+        System.out.println("Producto agregado al carrito: " + producto.getNombre());
     }
 
     public void mostrarProductos() {
