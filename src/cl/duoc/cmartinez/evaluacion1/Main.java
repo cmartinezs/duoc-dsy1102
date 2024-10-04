@@ -1,21 +1,22 @@
 package cl.duoc.cmartinez.evaluacion1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        List<Book> books = new ArrayList<>();
+        books.add(new Book("Libro1", "Autor 1", 2000, 500));
+        books.add(new Book("Libro2", "Autor 2", 2001, 200));
+        books.add(new Book("Libro3", "Autor 3", 2004, 300));
+        books.add(new Book("Libro4", "Autor 4", 2010, 100));
+        books.add(new Book("Libro5", "Autor 5", 2015, 80));
 
-        // Instanciar 5 libros
-        Book book1 = new Book("Libro1", "Autor 1", 2000, 500);
-        Book book2 = new Book("Libro2", "Autor 2", 2001, 200);
-        Book book3 = new Book("Libro3", "Autor 3", 2004, 300);
-        Book book4 = new Book("Libro4", "Autor 4", 2010, 100);
-        Book book5 = new Book("Libro5", "Autor 5", 2015, 80);
-
-        // instanciar 3 clientes
-        Client client1 = new Client("Cliente 1");
-        Client client2 = new Client("Cliente 2");
-        Client client3 = new Client("Cliente 3");
+        List<Client> clients = new ArrayList<>();
+        clients.add(new Client("Cliente 1"));
+        clients.add(new Client("Cliente 2"));
+        clients.add(new Client("Cliente 3"));
 
         Scanner sc = new Scanner(System.in);
 
@@ -36,121 +37,80 @@ public class Main {
             switch (option) {
                 case 1: //aqui logica de la opción 1
                     System.out.println("====== Lista de Libros ======");
-                    book1.info(1);
-                    book2.info(2);
-                    book3.info(3);
-                    book4.info(4);
-                    book5.info(5);
-                    // Mostrar la *info* de cada libro aquí
+
+                    for (int i = 0; i < books.size(); i++) {
+                        Book b = books.get(i);
+                        b.info(i);
+                        // books.get(i).info(i); forma corta
+                    }
+
                     System.out.println("==============================");
                     break;
                 case 2: //aqui logica de la opción 2
                     System.out.println("Ingrese el título del libro:");
                     sc.nextLine();
                     String title = sc.nextLine();
-                    // validar por cada libro si tiene el titulo
-                    if (book1.getTitle().equalsIgnoreCase(title)) {
-                        book1.info(0);
-                    } else if (book2.getTitle().equalsIgnoreCase(title)) {
-                        book2.info(0);
-                    } else if (book3.getTitle().equalsIgnoreCase(title)) {
-                        book3.info(0);
-                    } else if (book4.getTitle().equalsIgnoreCase(title)) {
-                        book4.info(0);
-                    } else if (book5.getTitle().equalsIgnoreCase(title)) {
-                        book5.info(0);
-                    } else {
+
+                    boolean foundedBook = false;
+
+                    for (Book book: books) {
+                        if (book.getTitle().equalsIgnoreCase(title)) {
+                            book.info(0);
+                            foundedBook = true;
+                            break;
+                        }
+                    }
+
+                    if (!foundedBook) {
                         System.out.println("No existe libro con el título " + title);
                     }
+
                     break;
                 case 3: //aqui logica de la opción 3
                     System.out.println("====== Lista de Clientes ======");
-                    client1.info(1);
-                    client2.info(2);
-                    client3.info(3);
+                    for (int i = 0; i < clients.size(); i++) {
+                        Client client = clients.get(i);
+                        client.info(i+1);
+                    }
                     System.out.println("==============================");
                     System.out.println("Seleccione el cliente (1-3):");
                     int cl = sc.nextInt();
 
+                    Client selectedClient = clients.get(cl-1);
+
                     System.out.println("====== Lista de Libros ======");
-                    book1.showForMenu(1);
-                    book2.showForMenu(2);
-                    book3.showForMenu(3);
-                    book4.showForMenu(4);
-                    book5.showForMenu(5);
-                    System.out.println("==============================");
-                    System.out.println("Seleccione el Libro (1-5):");
-                    int b = sc.nextInt();
-
-                    Book selectedBook =  null;
-
-                    switch (b) {
-                        case 1:
-                            selectedBook = book1;
-                            break;
-                        case 2:
-                            selectedBook = book2;
-                            break;
-                        case 3:
-                            selectedBook = book3;
-                            break;
-                        case 4:
-                            selectedBook = book4;
-                            break;
-                        case 5:
-                            selectedBook = book5;
-                            break;
-                        default:
-                            System.out.println("El libro seleccionado no es valido");
-                            break;
+                    for (int i = 0; i < books.size(); i++) {
+                        Book b = books.get(i);
+                        b.showForMenu(i+1);
+                        // books.get(i).showForMenu(i); forma corta
                     }
 
-                    if (selectedBook != null) {
-                        if (selectedBook.isBorrowed()) {
-                            System.out.println("El libro " +  selectedBook.getTitle() + " esta prestado");
-                        } else {
-                            switch (cl) {
-                                case 1:
-                                    client1.borrowBook(selectedBook);
-                                    break;
-                                case 2:
-                                    client2.borrowBook(selectedBook);
-                                    break;
-                                case 3:
-                                    client3.borrowBook(selectedBook);
-                                    break;
-                                default:
-                                    System.out.println("Cliente seleccionado no valido");
-                                    break;
-                            }
-                        }
+                    System.out.println("==============================");
+                    System.out.println("Seleccione el Libro (1-"+books.size()+"):");
+                    int b = sc.nextInt();
+
+                    Book selectedBook = books.get(b-1);
+
+                    if (selectedBook.isBorrowed()) {
+                        System.out.println("El libro " +  selectedBook.getTitle() + " esta prestado");
+                    } else {
+                        selectedClient.borrowBook(selectedBook);
                     }
 
                     break;
                 case 4: //aqui logica de la opción 4
 
                     System.out.println("====== Lista de Clientes ======");
-                    client1.info(1);
-                    client2.info(2);
-                    client3.info(3);
+                    for (int i = 0; i < clients.size(); i++) {
+                        Client client = clients.get(i);
+                        client.info(i+1);
+                    }
                     System.out.println("==============================");
                     System.out.println("Seleccione el cliente (1-3):");
                     int cl1 = sc.nextInt();
 
-                    switch (cl1) {
-                        case 1:
-                            client1.returnBook();
-                            break;
-                        case 2:
-                            client2.returnBook();
-                            break;
-                        case 3:
-                            client3.returnBook();
-                            break;
-                        default:
-                            System.out.println("Cliente seleccionado no valido");
-                            break;
-                    }
+                    Client selectedClient1 = clients.get(cl1-1);
+                    selectedClient1.returnBook();
                     break;
                 case 5: System.out.println("Saliendo del sistema...");
                     break;
