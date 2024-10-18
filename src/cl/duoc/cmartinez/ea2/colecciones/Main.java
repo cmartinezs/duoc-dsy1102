@@ -14,7 +14,7 @@ public class Main {
         System.out.println("Size = " + lista.size());
         lista.add("Hola");
         System.out.println("Size = " + lista.size());
-        System.out.println("Elemento 0 = " + lista.get(0));
+        System.out.println("Elemento 0 = " + lista.get(0)); // lo mismo que lista.getFirst()
         lista.remove("Hola");
         System.out.println("Size = " + lista.size());
         System.out.println("Contains Hola = " + lista.contains("Hola"));

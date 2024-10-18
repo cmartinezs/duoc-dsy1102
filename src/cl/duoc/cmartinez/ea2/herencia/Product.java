@@ -14,4 +14,8 @@ public class Product {
     public double calculateOff(double off){
         return price - off;
     }
+
+    public String getName() {
+        return name;
+    }
 }

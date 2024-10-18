@@ -11,14 +11,17 @@ public class Order {
         this.products = new ArrayList<>();
     }
 
-    public void calculateTotal() {
+    public double calculateTotal() {
         for (Product product: products) {
-            total += product.calculateOff(0);
+            double productOff = product.calculateOff(0);
+            System.out.println("Product " + product.getName() + " off: $" + productOff);
+            total += productOff;
             // total = total + product.calculateOff(0);
         }
+        return total;
     }
 
-    public double getTotal() {
-        return total;
+    public void addProduct(Product product) {
+        products.add(product);
     }
 }
