@@ -3,6 +3,9 @@ package cl.duoc.cmartinez.ea2.formativa;
 public class Main {
 
     public static void main(String[] args) {
+
+        // Instanciar un hotel
+
         // Agregar 3 perros al hotel
         // Agregar 2 gatos al hotel
         // Agregar 2 conejos al hotel
