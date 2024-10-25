@@ -1,5 +1,5 @@
 package cl.duoc.cmartinez.ea2.formativa;
-
+// definir package propio del tipo cl.duoc.<nombreusuariocorreo>
 public class Main {
 
     public static void main(String[] args) {
