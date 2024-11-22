@@ -4,11 +4,11 @@ package cl.duoc.cmartinez.model;
  *
  * @author Cetecom
  */
-public class LoginModel {
+public class UserModel {
     private final String username;
     private final String password;
 
-    public LoginModel(String username, String password) {
+    public UserModel(String username, String password) {
         this.username = username;
         this.password = password;
     }

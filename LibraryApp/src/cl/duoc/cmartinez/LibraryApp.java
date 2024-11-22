@@ -1,7 +1,8 @@
 package cl.duoc.cmartinez;
 
 import cl.duoc.cmartinez.controller.MainController;
-import cl.duoc.cmartinez.model.BookStoreDB;
+import cl.duoc.cmartinez.model.UserStoreDB;
+import cl.duoc.cmartinez.view.LibraryView;
 import cl.duoc.cmartinez.view.LoginView;
 
 /**
@@ -15,9 +16,10 @@ public class LibraryApp {
      */
     public static void main(String[] args) {
         System.out.println("Creando controller");
-        MainController ctrl = new MainController(new LoginView(), new BookStoreDB());
+        MainController ctrl = new MainController(new LoginView(), new LibraryView(), new UserStoreDB());
         System.out.println("Mostrando login");
         ctrl.showLogin();
+        System.out.println("Despues del mostrando login");
     }
     
 }

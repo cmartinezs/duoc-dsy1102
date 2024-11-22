@@ -1,5 +1,7 @@
 package cl.duoc.cmartinez.view;
 
+import cl.duoc.cmartinez.controller.MainController;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -45,6 +47,8 @@ public class LoginView extends javax.swing.JFrame {
         lblPassword.setText("Password");
 
         btnLogin.setText("Log In");
+
+        lblMsgError.setForeground(new java.awt.Color(255, 51, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,22 +128,6 @@ public class LoginView extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtnLogin() {
-        return btnLogin;
-    }
-
-    public JTextField getTxtUsername() {
-        return txtUsername;
-    }
-
-    public JLabel getLblMsgError() {
-        return lblMsgError;
-    }
-
-    public JPasswordField getPwdField() {
-        return pwdField;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lblLogin;
@@ -149,4 +137,20 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JPasswordField pwdField;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    public void addActionListenerBtnLogin(ActionListener listener) {
+        btnLogin.addActionListener(listener);
+    }
+
+    public String getUsername() {
+        return txtUsername.getText();
+    }
+
+    public String getPassword() {
+        return new String(pwdField.getPassword());
+    }
+
+    public void setTxtLblMsgError(String msg) {
+        lblMsgError.setText(msg);
+    }
 }

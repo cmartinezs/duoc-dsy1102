@@ -1,3 +1,5 @@
+Ev2/
+
 # Compiled class file
 *.class
 
@@ -28,3 +30,7 @@ out
 /GuiExample/nbproject/private/
 /LibraryApp/nbproject/private/
 /LibraryApp/build/
+/Ev2/nbproject/private/
+/Ev2/build/
+/ExampleDataBase/nbproject/private/
+/ExampleDataBase/build/

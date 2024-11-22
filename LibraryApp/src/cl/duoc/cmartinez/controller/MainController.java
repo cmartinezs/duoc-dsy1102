@@ -1,7 +1,9 @@
 package cl.duoc.cmartinez.controller;
 
 import cl.duoc.cmartinez.model.BookStoreDB;
-import cl.duoc.cmartinez.model.LoginModel;
+import cl.duoc.cmartinez.model.UserModel;
+import cl.duoc.cmartinez.model.UserStoreDB;
+import cl.duoc.cmartinez.view.LibraryView;
 import cl.duoc.cmartinez.view.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,12 +15,14 @@ import java.awt.event.ActionListener;
 public class MainController {
 
     private final LoginView login;
-    private final BookStoreDB db;
+    private final LibraryView library;
+    private final UserStoreDB db;
 
-    public MainController(LoginView login, BookStoreDB db) {
+    public MainController(LoginView login, LibraryView library, UserStoreDB db) {
         this.login = login;
+        this.library = library;
         this.db = db;
-        this.login.getBtnLogin().addActionListener(new LoginButtonActionListener());
+        this.login.addActionListenerBtnLogin(new LoginButtonActionListener());
     }
 
     public void showLogin() {
@@ -30,24 +34,18 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent ae) {
 
-            String username = login.getTxtUsername().getText();
-            String pwd = new String(login.getPwdField().getPassword());
-            LoginModel model = new LoginModel(username, pwd);
-            LoginModel modelDb = db.findUserByUsername(model.getUsername());
+            String username = login.getUsername();
+            String pwd = login.getPassword();
+            UserModel modelDb = db.findUserByUsername(username);
 
-            if (modelDb == null) {
-                login.getLblMsgError().setText("Bad Credentials");
+            if (modelDb == null || !modelDb.getPassword().equals(pwd)) {
+                login.setTxtLblMsgError("Bad Credentials");
                 return;
             }
 
-            if (!modelDb.getPassword().equals(model.getPassword())) {
-                login.getLblMsgError().setText("Bad Credentials");
-                return;
-            }
-
-            // codigo de login exitoso
             login.dispose();
             System.out.println("Login OK");
+            library.setVisible(true);
         }
 
     }
