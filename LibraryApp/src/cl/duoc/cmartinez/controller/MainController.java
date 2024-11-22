@@ -1,6 +1,5 @@
 package cl.duoc.cmartinez.controller;
 
-import cl.duoc.cmartinez.model.BookStoreDB;
 import cl.duoc.cmartinez.model.UserModel;
 import cl.duoc.cmartinez.model.UserStoreDB;
 import cl.duoc.cmartinez.view.LibraryView;
