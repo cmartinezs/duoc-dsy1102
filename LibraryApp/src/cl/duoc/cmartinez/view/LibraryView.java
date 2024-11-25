@@ -4,6 +4,9 @@
  */
 package cl.duoc.cmartinez.view;
 
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author cmartinezs
@@ -26,51 +29,220 @@ public class LibraryView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        tablePanel = new javax.swing.JPanel();
+        lblHeader1 = new javax.swing.JLabel();
+        tableScrollPane = new javax.swing.JScrollPane();
+        tableStock = new javax.swing.JTable();
+        addBookPanel = new javax.swing.JPanel();
+        lblHeader = new javax.swing.JLabel();
+        lblAuthor = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblIsbn = new javax.swing.JLabel();
+        lblPublication = new javax.swing.JLabel();
+        lblPrice = new javax.swing.JLabel();
+        lblAvailability = new javax.swing.JLabel();
+        txtAuthor = new javax.swing.JTextField();
+        txtTitle = new javax.swing.JTextField();
+        txtIsbn = new javax.swing.JTextField();
+        txtPublication = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
+        chkAvailability = new javax.swing.JCheckBox();
+        btnSave = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        mainPanel = new javax.swing.JPanel();
+        menuBar = new javax.swing.JMenuBar();
+        menuInventory = new javax.swing.JMenu();
+        menuLibraryItemStock = new javax.swing.JMenuItem();
+        menuLibraryItemAddBook = new javax.swing.JMenuItem();
+        menuActions = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lblHeader1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        lblHeader1.setText("STOCK OF BOOKS");
 
-        menu.setText("Inventory");
+        tableStock.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jMenuItem1.setText("Library Stock");
-        menu.add(jMenuItem1);
+            },
+            new String [] {
+                "ISBN", "Author", "Title"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
 
-        jMenuItem2.setText("Add book");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        menu.add(jMenuItem2);
+        tableStock.setColumnSelectionAllowed(true);
+        tableStock.getTableHeader().setReorderingAllowed(false);
+        tableScrollPane.setViewportView(tableStock);
+        tableStock.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jMenuBar1.add(menu);
+        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
+        tablePanel.setLayout(tablePanelLayout);
+        tablePanelLayout.setHorizontalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(tablePanelLayout.createSequentialGroup()
+                        .addComponent(tableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        tablePanelLayout.setVerticalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader1)
+                .addGap(18, 18, 18)
+                .addComponent(tableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        jMenu2.setText("Actions");
-        jMenuBar1.add(jMenu2);
+        lblHeader.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        lblHeader.setText("NEW BOOK");
 
-        setJMenuBar(jMenuBar1);
+        lblAuthor.setText("Author");
+
+        lblTitle.setText("Title");
+
+        lblIsbn.setText("ISBN");
+
+        lblPublication.setText("Publication");
+
+        lblPrice.setText("Price");
+
+        lblAvailability.setText("Availability");
+
+        chkAvailability.setText("yes");
+
+        btnSave.setText("Save");
+
+        btnCancel.setText("Cancel");
+
+        javax.swing.GroupLayout addBookPanelLayout = new javax.swing.GroupLayout(addBookPanel);
+        addBookPanel.setLayout(addBookPanelLayout);
+        addBookPanelLayout.setHorizontalGroup(
+            addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addBookPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(addBookPanelLayout.createSequentialGroup()
+                        .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblAvailability, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblPublication, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblAuthor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblIsbn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(31, 31, 31)
+                        .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPublication, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                            .addComponent(txtIsbn)
+                            .addComponent(txtTitle)
+                            .addComponent(txtAuthor)
+                            .addComponent(txtPrice)
+                            .addGroup(addBookPanelLayout.createSequentialGroup()
+                                .addComponent(chkAvailability)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addBookPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSave)))
+                .addContainerGap())
+        );
+        addBookPanelLayout.setVerticalGroup(
+            addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addBookPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader)
+                .addGap(18, 18, 18)
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAuthor)
+                    .addComponent(txtAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle)
+                    .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIsbn)
+                    .addComponent(txtIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPublication)
+                    .addComponent(txtPublication, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrice)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAvailability)
+                    .addComponent(chkAvailability))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(addBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnCancel))
+                .addContainerGap())
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Library");
+
+        mainPanel.setLayout(new java.awt.CardLayout());
+
+        menuInventory.setText("Inventory");
+
+        menuLibraryItemStock.setText("Stock");
+        menuInventory.add(menuLibraryItemStock);
+
+        menuLibraryItemAddBook.setText("Add book");
+        menuLibraryItemAddBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLibraryItemAddBookActionPerformed(evt);
+            }
+        });
+        menuInventory.add(menuLibraryItemAddBook);
+
+        menuBar.add(menuInventory);
+
+        menuActions.setText("Actions");
+        menuBar.add(menuActions);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuLibraryItemAddBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLibraryItemAddBookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menuLibraryItemAddBookActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,10 +280,73 @@ public class LibraryView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenu menu;
+    private javax.swing.JPanel addBookPanel;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JCheckBox chkAvailability;
+    private javax.swing.JLabel lblAuthor;
+    private javax.swing.JLabel lblAvailability;
+    private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblHeader1;
+    private javax.swing.JLabel lblIsbn;
+    private javax.swing.JLabel lblPrice;
+    private javax.swing.JLabel lblPublication;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenu menuActions;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuInventory;
+    private javax.swing.JMenuItem menuLibraryItemAddBook;
+    private javax.swing.JMenuItem menuLibraryItemStock;
+    private javax.swing.JPanel tablePanel;
+    private javax.swing.JScrollPane tableScrollPane;
+    private javax.swing.JTable tableStock;
+    private javax.swing.JTextField txtAuthor;
+    private javax.swing.JTextField txtIsbn;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtPublication;
+    private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
+
+    public void addActionListenerMenuItemLibraryStock(ActionListener ac) {
+        menuLibraryItemStock.addActionListener(ac);
+    }
+
+    public void addActionListenerMenuItemLibraryAddBook(ActionListener ac) {
+        menuLibraryItemAddBook.addActionListener(ac);
+    }
+
+    public void setVisibleTableBook() {
+        removeComponentsMainPanel();
+        mainPanel.add(tablePanel, "CardLayout");
+        mainPanel.setVisible(true);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    public void setVisibleFormAddBook() {
+        removeComponentsMainPanel();
+        mainPanel.add(addBookPanel, "CardLayout");
+        mainPanel.setVisible(true);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    private void removeComponentsMainPanel() {
+        mainPanel.removeAll();
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    public void addRowToBookTable(String isbn, String author, String title) {
+        DefaultTableModel temp = (DefaultTableModel) tableStock.getModel();
+        temp.addRow(new Object[]{isbn, author, title});
+    }
+
+    public void cleanTableBook() {
+        DefaultTableModel dtm = (DefaultTableModel) tableStock.getModel();
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+    }
 }
