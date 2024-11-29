@@ -4,7 +4,6 @@ import cl.duoc.cmartinez.model.BookModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -44,5 +43,26 @@ public class BookDAO {
         }
         return rows;
         
+    }
+
+    public boolean insert(String author, String title, String isbn, 
+            double price, boolean available) throws SQLException {
+        PreparedStatement psi = 
+                connection.prepareStatement("INSERT INTO books (isbn, author, title, price) VALUES (?,?,?,?)");
+        psi.setString(1, isbn);
+        psi.setString(2, author);
+        psi.setString(3, title);
+        psi.setDouble(4, price);
+        
+        int rowsCount = psi.executeUpdate();
+        
+        return rowsCount == 1;
+    }
+
+    public int delete(String isbn) throws SQLException {
+        String sql = "DELETE FROM books WHERE isbn = ?";
+        PreparedStatement psd = connection.prepareStatement(sql);
+        psd.setString(1, isbn);
+        return psd.executeUpdate();
     }
 }

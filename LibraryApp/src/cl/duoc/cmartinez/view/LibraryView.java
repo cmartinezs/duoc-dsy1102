@@ -7,6 +7,7 @@ package cl.duoc.cmartinez.view;
 import cl.duoc.cmartinez.controller.MainController;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,6 +36,7 @@ public class LibraryView extends javax.swing.JFrame {
         lblHeader1 = new javax.swing.JLabel();
         tableScrollPane = new javax.swing.JScrollPane();
         tableStock = new javax.swing.JTable();
+        btnDelete = new javax.swing.JButton();
         addBookPanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         lblAuthor = new javax.swing.JLabel();
@@ -82,6 +84,8 @@ public class LibraryView extends javax.swing.JFrame {
         tableScrollPane.setViewportView(tableStock);
         tableStock.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        btnDelete.setText("Delete");
+
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
@@ -89,7 +93,10 @@ public class LibraryView extends javax.swing.JFrame {
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
+                        .addComponent(lblHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete))
                     .addGroup(tablePanelLayout.createSequentialGroup()
                         .addComponent(tableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -99,9 +106,11 @@ public class LibraryView extends javax.swing.JFrame {
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblHeader1)
+                .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHeader1)
+                    .addComponent(btnDelete))
                 .addGap(18, 18, 18)
-                .addComponent(tableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addComponent(tableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -284,6 +293,7 @@ public class LibraryView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addBookPanel;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JCheckBox chkAvailability;
     private javax.swing.JLabel lblAuthor;
@@ -360,27 +370,48 @@ public class LibraryView extends javax.swing.JFrame {
         btnSave.addActionListener(ac);
     }
 
+    public void addActionListenerStockPanelBtnDelete(ActionListener ac) {
+        btnDelete.addActionListener(ac);
+    }
+
     public String getAuthor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return txtAuthor.getText();
     }
 
     public String getBookTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return txtTitle.getText();
     }
 
     public String getISBN() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return txtIsbn.getText();
     }
 
-    public Date getPublication() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    /*public Date getPublication() {
+        return txtPublication.getText();
+    }*/
 
     public double getPrice() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return Double.parseDouble(txtPrice.getText());
     }
 
     public boolean getAvailability() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return chkAvailability.isSelected();
+    }
+
+    public void clickMenuItemStock() {
+        menuLibraryItemStock.doClick();
+    }
+
+    public String getSelectedIsbnInBookTable() {
+        DefaultTableModel temp = (DefaultTableModel) tableStock.getModel();
+        int row = tableStock.getSelectedRow();
+        if(row < 0){
+            System.out.println("No hay fila");
+            return "";
+        }
+        
+        Object obj = temp.getValueAt(row, 0);
+        System.out.println("Selected: " + obj);
+        return (String)obj;
     }
 }

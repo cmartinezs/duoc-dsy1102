@@ -34,6 +34,7 @@ public class MainController {
         this.library.addActionListenerMenuItemLibraryAddBook(new MenuItemLibraryAddBookActionListener());
         this.library.addActionListenerAddBookPanelBtnCancel(new BtnCancelAddBookActionListener());
         this.library.addActionListenerAddBookPanelBtnSave(new BtnSaveAddBookActionListener());
+        this.library.addActionListenerStockPanelBtnDelete(new BtnDeleteStockActionListener());
     }
 
     public void showLogin() {
@@ -109,9 +110,40 @@ public class MainController {
             String author = library.getAuthor();
             String title = library.getBookTitle();
             String isbn = library.getISBN();
-            java.sql.Date publication = library.getPublication();
+            //java.sql.Date publication = library.getPublication();
             double price = library.getPrice();
             boolean isAvailable = library.getAvailability();
+            boolean ok = false;
+            try {
+                ok = bookDao.insert(author, title, isbn, price, isAvailable);
+            } catch (SQLException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if (ok) {
+                library.clickMenuItemStock();
+            }
+        }
+    }
+    
+    class BtnDeleteStockActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String isbn = library.getSelectedIsbnInBookTable();
+            if(isbn.equals("")){
+                return;
+            }
+            
+            try {
+                int rowCount = bookDao.delete(isbn);
+                if (rowCount > 0) {
+                    library.clickMenuItemStock();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }
 }
