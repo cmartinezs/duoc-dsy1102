@@ -4,7 +4,9 @@
  */
 package cl.duoc.cmartinez.view;
 
+import cl.duoc.cmartinez.controller.MainController;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -332,7 +334,7 @@ public class LibraryView extends javax.swing.JFrame {
         mainPanel.repaint();
     }
 
-    private void removeComponentsMainPanel() {
+    public void removeComponentsMainPanel() {
         mainPanel.removeAll();
         mainPanel.revalidate();
         mainPanel.repaint();
@@ -348,5 +350,37 @@ public class LibraryView extends javax.swing.JFrame {
         while (dtm.getRowCount() > 0) {
             dtm.removeRow(0);
         }
+    }
+
+    public void addActionListenerAddBookPanelBtnCancel(ActionListener ac) {
+        btnCancel.addActionListener(ac);
+    }
+
+    public void addActionListenerAddBookPanelBtnSave(ActionListener ac) {
+        btnSave.addActionListener(ac);
+    }
+
+    public String getAuthor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getBookTitle() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getISBN() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Date getPublication() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public double getPrice() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean getAvailability() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

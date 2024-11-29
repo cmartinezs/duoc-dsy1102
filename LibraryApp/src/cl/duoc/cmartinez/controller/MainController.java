@@ -32,6 +32,8 @@ public class MainController {
         this.login.addActionListenerBtnLogin(new LoginButtonActionListener());
         this.library.addActionListenerMenuItemLibraryStock(new MenuItemLibraryStockActionListener());
         this.library.addActionListenerMenuItemLibraryAddBook(new MenuItemLibraryAddBookActionListener());
+        this.library.addActionListenerAddBookPanelBtnCancel(new BtnCancelAddBookActionListener());
+        this.library.addActionListenerAddBookPanelBtnSave(new BtnSaveAddBookActionListener());
     }
 
     public void showLogin() {
@@ -90,5 +92,26 @@ public class MainController {
             library.setVisibleFormAddBook();
         }
 
+    }
+    
+    class BtnCancelAddBookActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            library.removeComponentsMainPanel();
+        }
+    }
+    
+    class BtnSaveAddBookActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String author = library.getAuthor();
+            String title = library.getBookTitle();
+            String isbn = library.getISBN();
+            java.sql.Date publication = library.getPublication();
+            double price = library.getPrice();
+            boolean isAvailable = library.getAvailability();
+        }
     }
 }

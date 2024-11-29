@@ -35,7 +35,7 @@ public class LibraryApp {
                 new BookDAO(conn)
         );
         System.out.println("Show login");
-        ctrl.showLogin();
+        ctrl.showLibrary();
     }
 
     public static Connection createConnection() {
